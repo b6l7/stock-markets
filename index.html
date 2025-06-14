@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Analysis Web Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>📈 Stock Analysis</h1>
+            <p>Analyze stock </p>
+        </div>
+
+        <div class="search-section">
+            <div class="search-form">
+                <input type="text" class="search-input" id="stockSymbol" placeholder="Enter stock symbol (e.g., AAPL, GOOGL)" maxlength="10">
+                <button class="btn" onclick="searchStock()">Analyze Stock</button>
+                <button class="btn" onclick="generatePrediction()">Predict Price</button>
+            </div>
+            <div class="sample-stocks">
+                <div class="sample-stock" onclick="loadSampleStock('AAPL')">AAPL</div>
+                <div class="sample-stock" onclick="loadSampleStock('GOOGL')">GOOGL</div>
+                <div class="sample-stock" onclick="loadSampleStock('TSLA')">TSLA</div>
+                <div class="sample-stock" onclick="loadSampleStock('MSFT')">MSFT</div>
+                <div class="sample-stock" onclick="loadSampleStock('AMZN')">AMZN</div>
+            </div>
+        </div>
+
+        <div id="errorContainer"></div>
+
+        <div class="main-content">
+            <div class="chart-section">
+                <div class="chart-controls">
+                    <button class="control-btn active" onclick="changeChartType('line')">Line Chart</button>
+                    <button class="control-btn" onclick="changeChartType('candlestick')">Candlestick</button>
+                    <button class="control-btn" onclick="toggleMovingAverage()">Moving Average</button>
+                    <button class="control-btn" onclick="resetZoom()">Reset Zoom</button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="stockChart"></canvas>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="info-panel">
+                    <div class="panel-title">Stock Information</div>
+                    <div class="stock-info" id="stockInfo">
+                        <div class="info-item">
+                            <span class="info-label">Symbol:</span>
+                            <span class="info-value" id="symbolValue">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Current Price:</span>
+                            <span class="info-value" id="currentPrice">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Daily Change:</span>
+                            <span class="info-value" id="dailyChange">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Volume:</span>
+                            <span class="info-value" id="volume">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">High:</span>
+                            <span class="info-value" id="highPrice">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Low:</span>
+                            <span class="info-value" id="lowPrice">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="indicators-panel">
+                    <div class="panel-title">Technical Indicators</div>
+                    <div class="indicators">
+                        <div class="indicator">
+                            <span>RSI (14):</span>
+                            <span id="rsiValue">-</span>
+                        </div>
+                        <div class="indicator">
+                            <span>MACD:</span>
+                            <span id="macdValue">-</span>
+                        </div>
+                        <div class="indicator">
+                            <span>SMA (20):</span>
+                            <span id="smaValue">-</span>
+                        </div>
+                        <div class="indicator">
+                            <span>EMA (12):</span>
+                            <span id="emaValue">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prediction-panel">
+                    <div class="panel-title">Price Prediction</div>
+                    <div id="predictionContent">
+                        <p style="color: rgba(255,255,255,0.8);">Click "Predict Price" to generate forecast based on historical data using linear regression.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

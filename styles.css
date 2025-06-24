@@ -259,12 +259,10 @@ body {
 }
 
 .chart-container {
-    position: relative;
-    height: 400px;
-    margin: 20px 0;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 10px;
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    margin: 0 auto;
 }
 
 .sample-stocks {
